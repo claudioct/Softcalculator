@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "c5a1a40a-eafe-4ab8-87d9-2b7a7c624aff",
+		"name": "SoftCalculator",
+		"description": "Testes de API do SoftCalculator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Calcular Juros",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a4092748-d7e1-45d8-a0cc-d6ee3121266d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Valor final\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql(3096520.16);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/calculajuros?valorInicial=99999.99&meses=345",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"calculajuros"
+					],
+					"query": [
+						{
+							"key": "valorInicial",
+							"value": "99999.99"
+						},
+						{
+							"key": "meses",
+							"value": "345"
+						}
+					]
+				},
+				"description": "Testa endpoint de calculo dos juros"
+			},
+			"response": []
+		},
+		{
+			"name": "Calcular Juros Meses Negativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a4092748-d7e1-45d8-a0cc-d6ee3121266d",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Mensagem de retorno\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Quatidade de meses inválida.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/calculajuros?valorInicial=99999.99&meses=-1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"calculajuros"
+					],
+					"query": [
+						{
+							"key": "valorInicial",
+							"value": "99999.99"
+						},
+						{
+							"key": "meses",
+							"value": "-1"
+						}
+					]
+				},
+				"description": "Testa endpoint de calculo dos juros"
+			},
+			"response": []
+		},
+		{
+			"name": "Calcular Juros Valor Inicial Negativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a4092748-d7e1-45d8-a0cc-d6ee3121266d",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Mensagem de retorno\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Valor inicial inválido.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/calculajuros?valorInicial=-99999.99&meses=1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"calculajuros"
+					],
+					"query": [
+						{
+							"key": "valorInicial",
+							"value": "-99999.99"
+						},
+						{
+							"key": "meses",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Testa endpoint de calculo dos juros"
+			},
+			"response": []
+		},
+		{
+			"name": "Show me the code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "778d606f-3f53-4876-a388-c8c58fe4809f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body(\"https://github.com/claudioct/Softcalculator\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/showmethecode",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"showmethecode"
+					]
+				},
+				"description": "Testa endpoint de calculo dos juros"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1a0846b1-1e15-445b-953b-e95ff02a97c6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "844a0e03-f732-4c7d-bfe2-aa3df0b4ea53",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "fffd97b7-5400-48ed-8133-6d805a26f385",
+			"key": "host",
+			"value": "https://localhost:44336",
+			"type": "string"
+		}
+	]
+}
