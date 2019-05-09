@@ -17,7 +17,7 @@
         </member>
         <member name="T:SoftCalculator.Api.Controllers.CalculajurosApiController">
             <summary>
-            
+            A
             </summary>
         </member>
         <member name="M:SoftCalculator.Api.Controllers.CalculajurosApiController.CalculateInterestRate(System.Nullable{System.Decimal},System.Nullable{System.Int32})">
@@ -25,7 +25,7 @@
             Realiza calculo de juros compostos
             </summary>
             <param name="valorInicial">Valor Inicial</param>
-            <param name="meses">Tempo é um inteiro, que representa meses</param>
+            <param name="meses">Tempo em meses</param>
             <response code="200">successful operation</response>
             <response code="400">Invalid request</response>
         </member>
