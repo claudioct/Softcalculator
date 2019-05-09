@@ -11,6 +11,8 @@ using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using SoftCalculator.Api.Filters;
 using SoftCalculator.Application;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 namespace SoftCalculator.Api
 {   /*
@@ -103,11 +105,7 @@ namespace SoftCalculator.Api
                     c.CustomSchemaIds(type => type.FriendlyId(true));
                     c.DescribeAllEnumsAsStrings();
                     c.IncludeXmlComments($"{AppContext.BaseDirectory}{Path.DirectorySeparatorChar}{_hostingEnv.ApplicationName}.xml");
-                    // Sets the basePath property in the Swagger document generated
                     c.DocumentFilter<BasePathFilter>("");
-
-                    // Include DataAnnotation attributes on Controller Action parameters as Swagger validation rules (e.g required, pattern, ..)
-                    // Use [ValidateModelState] on Actions to actually validate it in C# as well!
                     c.OperationFilter<GeneratePathParamsValidationFilter>();
                 });
         }
@@ -120,6 +118,8 @@ namespace SoftCalculator.Api
         /// <param name="loggerFactory"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            var supportedCultures = new[] { new CultureInfo("pt-BR") };
+
             app
                 .UseMvc()
                 .UseDefaultFiles()
@@ -127,21 +127,12 @@ namespace SoftCalculator.Api
                 .UseSwagger()
                 .UseSwaggerUI(c =>
                 {
-                    //TODO: Either use the SwaggerGen generated Swagger contract (generated from C# classes)
                     c.SwaggerEndpoint("/swagger/1.0.0/swagger.json", "SoftCalculator");
-
-                    //TODO: Or alternatively use the original Swagger contract that's included in the static files
-                    // c.SwaggerEndpoint("/swagger-original.json", "SoftCalculator Original");
                 });
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                //TODO: Enable production exception handling (https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling)
-                // app.UseExceptionHandler("/Home/Error");
             }
         }
     }
