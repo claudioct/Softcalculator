@@ -1,0 +1,67 @@
+swagger: "2.0"
+info:
+  description: |
+    API com dois endpoints
+    - Calcula Juros
+    - Show me the code
+  version: "1.0.0"
+  title: "SoftCalculator"
+  contact:
+    email: "claudioct@gmail.com"
+host: "127.0.0.1"
+basePath: "/"
+tags:
+- name: "calculajuros"
+  description: "Ela faz um cálculo de juros compostos"
+- name: "showmethecode"
+  description: "Retorna a url do código no github"
+schemes:
+- "https"
+- "http"
+paths:
+  /calculajuros:
+    get:
+      tags:
+      - "calculajuros"
+      summary: "Realiza calculo de juros compostos"
+      description: ""
+      operationId: "calculateInterestRate"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "valorInicial"
+        in: "query"
+        description: "Valor Inicial"
+        required: true
+        type: "number"
+        format: "decimal"
+      - name: "meses"
+        in: "query"
+        description: "Tempo é um inteiro, que representa meses"
+        required: true
+        type: "number" 
+        format: "int32"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "number"
+            format: "decimal"
+        400:
+          description: "Invalid request"
+  /showmethecode:
+    get:
+      tags:
+      - "showmethecode"
+      summary: "Retorna repositorio no github"
+      description: ""
+      operationId: "returnCodeRepository"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+        400:
+          description: "Invalid request"
