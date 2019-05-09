@@ -17,7 +17,7 @@
         </member>
         <member name="T:SoftCalculator.Api.Controllers.CalculajurosApiController">
             <summary>
-            A
+            
             </summary>
         </member>
         <member name="M:SoftCalculator.Api.Controllers.CalculajurosApiController.CalculateInterestRate(System.Nullable{System.Decimal},System.Nullable{System.Int32})">

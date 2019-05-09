@@ -48,12 +48,12 @@ namespace SoftCalculator.Api.Controllers
         { 
             if (!valorInicial.HasValue || valorInicial.Value < 0)
             {
-                BadRequest("Valor inicial inválido.");
+                return BadRequest("Valor inicial inválido.");
             }
 
             if (!meses.HasValue || meses.Value < 0)
             {
-                BadRequest("Quatidade de meses inválido.");
+                return BadRequest("Quatidade de meses inválida.");
             }
 
             var finalAmount = _insterestCalculatorService.Calculate(valorInicial.Value, meses.Value);
