@@ -34,7 +34,7 @@ namespace SoftCalculator.Api.Controllers
         /// </summary>
         
         /// <param name="valorInicial">Valor Inicial</param>
-        /// <param name="meses">Tempo é um inteiro, que representa meses</param>
+        /// <param name="meses">Tempo em meses</param>
         /// <response code="200">successful operation</response>
         /// <response code="400">Invalid request</response>
         [HttpGet]
